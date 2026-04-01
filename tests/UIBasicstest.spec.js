@@ -8,6 +8,8 @@ test.only('First Playwright test',async ({browser})=>
 //Chrome - plugins/cookies
 const context = await browser.newContext();
 const page = await context.newPage();
+
+//Locators
 const userName = page.locator("#username");
 const passWord = page.locator("[type='password']");
 const signIn = page.locator("#signInBtn");
