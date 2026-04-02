@@ -60,11 +60,47 @@ test.only('UI controls ', async ({ page }) => {
 
 });
 
-/* Chidl windows handling */
+/* Child windows handling */
 
-test.only('Child window handling ', async ({ page }) => {
+test.only('Child window handling ', async ({ browser }) => {
+
+    //Chrome - plugins/cookies
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
 
+    //Navigate to website
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise");
+
+    //Locators
+    const documentLink = page.locator("[href*='documents-request']");
+    const username = page.locator("#username");
+
+    //To go o new page 
+    const [newPage] = await Promise.all(
+        [
+
+            //listen for any new page pending , rejected , fullfilled
+            context.waitForEvent('page'),
+            //Click on the document link opens a seperate window
+            documentLink.click(),
+        ])
+
+    //To get the red text content
+    const text = await newPage.locator(".red").textContent();
+
+    //To extract only particular text from the string - Split using the method
+    const arrayText = text.split("@");
+    const emailText = arrayText[1].split(" ")[0]
+
+    console.log(emailText);
+    //Enter username fro the extracted text
+    await page.locator("#username").type(emailText);
+    await page.pause();
+
+
+    //To print the username entered in the field
+    console.log(await page.locator("#username").inputValue());
 
 
 
