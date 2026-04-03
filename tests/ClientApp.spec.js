@@ -76,7 +76,7 @@ test.only('Child window handling ', async ({ browser }) => {
     const documentLink = page.locator("[href*='documents-request']");
     const username = page.locator("#username");
 
-    //To go o new page 
+    //To go to new page 
     const [newPage] = await Promise.all(
         [
 
