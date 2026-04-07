@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 
 /* First playwright UI test */
-test.only('First Playwright test', async ({ browser }) => {
+test('First Playwright test', async ({ browser }) => {
 
 
     //Chrome - plugins/cookies

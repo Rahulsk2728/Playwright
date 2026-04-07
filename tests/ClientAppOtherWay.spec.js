@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 
 /* First Playwright test locators  */
-test.only('First Playwright test', async ({ page }) => {
+test('First Playwright test', async ({ page }) => {
 
     //To navigate to website
     await page.goto("https://rahulshettyacademy.com/client");

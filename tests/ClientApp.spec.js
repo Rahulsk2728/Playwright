@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 
 /* First Playwright test locators  */
-test.only('First Playwright test', async ({ page }) => {
+test('First Playwright test', async ({ page }) => {
 
     //To navigate to website
     await page.goto("https://rahulshettyacademy.com/client");
@@ -22,7 +22,7 @@ test.only('First Playwright test', async ({ page }) => {
 
 
 /* UI lcoators methods and assertions */
-test.only('UI controls ', async ({ page }) => {
+test('UI controls ', async ({ page }) => {
 
     //Navigate to website
     await page.goto("https://rahulshettyacademy.com/loginpagePractise");
@@ -62,7 +62,7 @@ test.only('UI controls ', async ({ page }) => {
 
 /* Child windows handling */
 
-test.only('Child window handling ', async ({ browser }) => {
+test('Child window handling ', async ({ browser }) => {
 
     //Chrome - plugins/cookies
     const context = await browser.newContext();
@@ -96,7 +96,6 @@ test.only('Child window handling ', async ({ browser }) => {
     console.log(emailText);
     //Enter username fro the extracted text
     await page.locator("#username").type(emailText);
-    await page.pause();
 
 
     //To print the username entered in the field

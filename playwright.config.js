@@ -8,20 +8,22 @@ import { time } from 'node:console';
  */
 const config = ({
   testDir: './tests',
-  
-      timeout : 40 *1000,
-      expect: {
-        timeout: 40 *1000,
-   },
 
-   use:{
+  timeout: 40 * 1000,
+  expect: {
+    timeout: 40 * 1000,
+  },
 
-      browserName:'chromium',
-      headless :false
+  use: {
 
-   },
+    browserName: 'chromium',
+    headless: false,
+    screenshot: 'on',
+    trace: 'on'
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+  },
+
+  /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 });
 module.exports = config;
 

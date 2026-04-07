@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 /* Write the condition till the payment page from login */
 
-test.only('Web client login', async ({ page }) => {
+test('Web client login', async ({ page }) => {
 
 
     //To navigate to website
