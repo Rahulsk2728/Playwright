@@ -1,12 +1,14 @@
 // @ts-check
+// @ts-ignore
 import { defineConfig, devices } from '@playwright/test';
-import { time } from 'node:console';
 
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-const config = ({
+// @ts-ignore
+const { defineConfig } = require('@playwright/test');
+module.exports = defineConfig({
   testDir: './tests',
 
   timeout: 40 * 1000,
@@ -25,5 +27,5 @@ const config = ({
 
   /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 });
-module.exports = config;
+
 
