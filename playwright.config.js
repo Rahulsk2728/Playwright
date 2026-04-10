@@ -1,14 +1,11 @@
 // @ts-check
-// @ts-ignore
 import { defineConfig, devices } from '@playwright/test';
 
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-// @ts-ignore
-const { defineConfig } = require('@playwright/test');
-module.exports = defineConfig({
+const config = defineConfig({
   testDir: './tests',
 
   timeout: 40 * 1000,
@@ -27,5 +24,5 @@ module.exports = defineConfig({
 
   /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 });
-
+module.exports = config;
 
