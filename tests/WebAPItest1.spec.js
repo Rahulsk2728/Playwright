@@ -1,33 +1,32 @@
 import { test, expect, request } from '@playwright/test';
 
-
-//Payload storage 
+// Payload storage 
 const loginPayLoad = { userEmail: "anshika@gmail.com", userPassword: "IamKing@00" };
-const orderPayload = {"orders": [{"country":"India","product0rderedId":"62023a761Sfcf72fe9dfc619"}]};
+
+const orderPayload = {
+  orders: [{ country: "India", productOrderedId: "62023a761Sfcf72fe9dfc619" }]
+};
+
 let token;
+let orderID;
 
 test.beforeAll(async () => {
 
-    //Login API 
-    const apiContext = await request.newContext();
-    const loginResponse = await apiContext.post("https://rahulshettyacademy.com/api/com/auth/login",
+  const apiContext = await request.newContext();
 
-        // Headers 
-        {
-            data: loginPayLoad
-        })
+  // Login API
+  const loginResponse = await apiContext.post(
+    "https://rahulshettyacademy.com/api/com/auth/login",
+    { data: loginPayLoad }
+  );
 
-    // Debug (optional but useful)
-    console.log(await loginResponse.text());
+  expect(loginResponse.ok()).toBeTruthy();
 
-    // Status check
-    expect(loginResponse.ok()).toBeTruthy();
+  const loginResponseJson = await loginResponse.json();
+  token = loginResponseJson.token;
+  console.log("Token:", token);
 
-    const loginResponseJson = await loginResponse.json();
-    token = loginResponseJson.token;
-    console.log("Token:", token);
-
-// Create order API
+  // Create order API
   const orderResponse = await apiContext.post(
     "https://rahulshettyacademy.com/api/ecom/order/create-order",
     {
@@ -39,9 +38,12 @@ test.beforeAll(async () => {
     }
   );
 
-  console.log(await orderResponse.json());
-});
+  const orderResponseJSON = await orderResponse.json();
+  console.log(orderResponseJSON);
 
+  orderID = orderResponseJSON.orders[0];
+  console.log("Order ID:", orderID);
+});
 
 
 /* First Playwright test locators  */
