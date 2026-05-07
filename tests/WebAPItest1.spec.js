@@ -4,7 +4,7 @@ import { test, expect, request } from '@playwright/test';
 const loginPayLoad = { userEmail: "anshika@gmail.com", userPassword: "IamKing@00" };
 
 const orderPayload = {
-  orders: [{ country: "India", productOrderedId: "62023a761Sfcf72fe9dfc619" }]
+    orders: [{ country: "India", productOrderedId: "62023a761Sfcf72fe9dfc619" }]
 };
 
 let token;
@@ -12,43 +12,42 @@ let orderID;
 
 test.beforeAll(async () => {
 
-  const apiContext = await request.newContext();
+    const apiContext = await request.newContext();
 
-  // Login API
-  const loginResponse = await apiContext.post(
-    "https://rahulshettyacademy.com/api/com/auth/login",
-    { data: loginPayLoad }
-  );
+    // Login API
+    const loginResponse = await apiContext.post(
+        "https://rahulshettyacademy.com/api/com/auth/login",
+        { data: loginPayLoad }
+    );
 
-  expect(loginResponse.ok()).toBeTruthy();
+    expect(loginResponse.ok()).toBeTruthy();
 
-  const loginResponseJson = await loginResponse.json();
-  token = loginResponseJson.token;
-  console.log("Token:", token);
+    const loginResponseJson = await loginResponse.json();
+    token = loginResponseJson.token;
+    console.log("Token:", token);
 
-  // Create order API
-  const orderResponse = await apiContext.post(
-    "https://rahulshettyacademy.com/api/ecom/order/create-order",
-    {
-      data: orderPayload,
-      headers: {
-        'Authorization': token,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+    // Create order API
+    const orderResponse = await apiContext.post(
+        "https://rahulshettyacademy.com/api/ecom/order/create-order",
+        {
+            data: orderPayload,
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+            },
+        }
+    );
 
-  const orderResponseJSON = await orderResponse.json();
-  console.log(orderResponseJSON);
+    const orderResponseJSON = await orderResponse.json();
+    console.log(orderResponseJSON);
 
-  orderID = orderResponseJSON.orders[0];
-  console.log("Order ID:", orderID);
+    orderID = orderResponseJSON.orders[0];
+    console.log("Order ID:", orderID);
 });
 
 
 /* First Playwright test locators  */
 test('First Playwright test', async ({ page }) => {
-
 
     page.addInitScript(value => {
 
